@@ -43,7 +43,7 @@ def create_test_suite(json_file, output_folder, set_base_file):
 
 suite_name = input()
 
-# Example usage
-json_file = f'{suite_name}.json'  # Replace with your JSON file name
-output_folder = f'{suite_name}_suite'  # Replace with your desired output folder name
+
+json_file = f'{suite_name}.json'  
+output_folder = f'{suite_name}_suite'  
 create_test_suite(json_file, output_folder, "SetBase.sql")
