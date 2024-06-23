@@ -21,7 +21,7 @@ For example, running:
 Would create run your test suite created in step 1.
 
 
-### A note on the json file format
+# ASIDE: A note on the json file format
 The JSON file is an array of objects, with each object representing a test case.
 
 One test case would look like the following:
