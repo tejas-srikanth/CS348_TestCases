@@ -1,0 +1,202 @@
+[
+    
+    {
+        "Name": "AssignLectureToUnknownProf",
+        "UsingBase": true,
+        "Additional": [
+            "insert into student values (2, 'John', 3)"
+        ],
+        "Args": [
+            "2 T Tuesday 10:00 CS348 1"
+        ],
+        "Expected": [
+            "Error: assigning lecture to a non-professor"
+        ]
+    },
+
+
+    {
+        "Name": "AssignOHNonprof",
+        "UsingBase": true,
+        "Additional": [
+            "insert into student values (2, 'John', 3)",
+            "insert into officehour values ('CS348', 'F2018', 1, 'Tuesday', '09:00')"
+        ],
+        "Args": [
+            "2 O Tuesday 09:00 CS348"
+        ],
+        "Expected": [
+            "Error: assigning office hours to a non-professor"
+        ]
+    },
+
+
+    {
+        "Name": "NonProf",
+        "UsingBase": true,
+        "Additional": [
+
+        ],
+        "Args": [
+            "3 T Tuesday 10:00 CS348 1"
+        ],
+        "Expected": [
+            "Error: unknown professor/student id"
+        ]
+    },
+
+    {
+        "Name": "NonStudent",
+        "UsingBase": true,
+        "Additional": [
+
+        ],
+        "Args": [
+            "3 C Tuesday 10:00 CS348 1"
+        ],
+        "Expected": [
+            "Error: unknown professor/student id"
+        ]
+    },
+
+    {
+        "Name": "DifferentTimeStudent",
+        "UsingBase": true,
+        "Additional": [
+
+        ],
+        "Args": [
+            "1 C Tuesday 11:00 CS348 1"
+        ],
+        "Expected": [
+            "Error: this section exists at a different time"
+        ]
+    },
+
+    {
+        "Name": "DifferentTimeProf",
+        "UsingBase": true,
+        "Additional": [
+            "insert into professor values (2, 'Dr. John', 'DC4556', 'CS')"
+        ],
+        "Args": [
+            "2 T Tuesday 11:00 CS348 1"
+        ],
+        "Expected": [
+            "Error: this section exists at a different time"
+        ]
+    },
+
+    {
+        "Name": "OHUnknownClass",
+        "UsingBase": true,
+        "Additional": [],
+        "Args": [
+            "1 O Tuesday 11:00 CS234 1"
+        ],
+        "Expected": [
+            "Error: office hours for an unknown class"
+        ]
+    },
+
+    {
+        "Name": "ProfInClass",
+        "UsingBase": true,
+        "Additional": [
+            "insert into professor values (2, 'Dr. John', 'DC4556', 'CS')"
+        ],
+        "Args": [
+            "2 C Tuesday 10:00 CS348 1"
+        ],
+        "Expected": [
+            "Error: enrolling a non-student in a class"
+        ]
+    },
+
+    {
+        "Name": "BadCnumProf",
+        "UsingBase": true,
+        "Additional": [
+            "insert into professor values (2, 'Dr. John', 'DC4556', 'CS')"
+        ],
+        "Args": [
+            "2 T Tuesday 11:00 CS234 1"
+        ],
+        "Expected": [
+            "Error: unknown class"
+        ]
+    },
+
+    {
+        "Name": "BadSectionProf",
+        "UsingBase": true,
+        "Additional": [
+            "insert into professor values (2, 'Dr. John', 'DC4556', 'CS')"
+        ],
+        "Args": [
+            "2 T Tuesday 10:00 CS348 2"
+        ],
+        "Expected": [
+            "OK"
+        ]
+    },
+
+    {
+        "Name": "BadCnumStudent",
+        "UsingBase": true,
+        "Additional": [
+            "insert into student values (2, 'John', 3)"
+        ],
+        "Args": [
+            "2 C Tuesday 10:00 CS234 1"
+        ],
+        "Expected": [
+            "Error: unknown class"
+        ]
+    },
+
+    {
+        "Name": "BadSectionStudent",
+        "UsingBase": true,
+        "Additional": [
+            "insert into student values (2, 'John', 3)"
+        ],
+        "Args": [
+            "2 C Tuesday 11:00 CS348 2"
+        ],
+        "Expected": [
+            "Error: unknown class"
+        ]
+    },
+
+    {
+        "Name": "TimeConflict",
+        "UsingBase": true,
+        "Additional": [
+            "insert into professor values (2, 'Dr. John', 'DC4556', 'CS')",
+            "insert into officehour values ('CS348', 'F2018', 1, 'Tuesday', '10:00')"
+        ],
+        "Args": [
+            "2 O Tuesday 10:00 CS348"
+        ],
+        "Expected": [
+            "Warning: time conflict"
+        ]
+    },
+    {
+        "Name": "NoTimeConflict",
+        "UsingBase": true,
+        "Additional": [
+            "insert into professor values (2, 'Dr. John', 'DC4556', 'CS')",
+            "insert into officehour values ('CS348', 'F2018', 1, 'Wednesday', '10:00')"
+        ],
+        "Args": [
+            "2 O Wednesday 10:00 CS348"
+        ],
+        "Expected": [
+            "OK"
+        ]
+
+    }
+
+]
